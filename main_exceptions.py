@@ -4,6 +4,7 @@ from pyspark.errors import NumberFormatException, ArithmeticException, ArrayInde
 
 # Configura Spark para habilitar el modo ANSI
 spark = SparkSession.builder \
+    .master("local[8]") \
     .config("spark.sql.ansi.enabled", "true") \
     .appName("Spark ANSI Example") \
     .getOrCreate()
@@ -38,4 +39,6 @@ def main():
 
 if __name__ == "__main__":
     main()
+    # Mantiene Spark en ejecucion para ver el UI
+    input("Press Enter to stop spark...")
     spark.stop()
